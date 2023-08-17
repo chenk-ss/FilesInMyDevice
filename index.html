@@ -1,0 +1,12 @@
+<html>
+    <body>
+        <h1>
+            {{ .path }}
+            <br/>
+            <a href="{{.back}}">../</a><br/>
+        </h1>
+            {{range $val := .files}}
+                <a href="{{$val.Address}}" style="text-decoration: none;">{{$val.Name}} &nbsp;{{$val.Size}}</a><br/>
+            {{end}}
+    </body>
+</html>
