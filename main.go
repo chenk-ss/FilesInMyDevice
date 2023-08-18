@@ -21,18 +21,8 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type Todo struct {
-	Title string
-	Done  bool
-}
-
-type PageData struct {
-	PageTitle string
-	Todos     []Todo
-}
-
 var base_path string
-var base_port = "7005"
+var base_port string
 var base_download_port string
 var base_domain string
 var base_url string
