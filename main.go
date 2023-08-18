@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"os/signal"
 	"path/filepath"
@@ -96,7 +97,7 @@ func QueryFiles(path string) []File {
 		if file.IsDir() {
 			nFile.Name = file.Name() + "/"
 			nFile.Type = 0
-			nFile.Address = base_url + "?path=" + path + file.Name() + "/"
+			nFile.Address = base_url + "?path=" + url.QueryEscape(path+file.Name()+"/")
 		} else {
 			nFile.Name = file.Name()
 			nFile.Type = 1
