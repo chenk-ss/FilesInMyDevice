@@ -59,7 +59,7 @@ func Query(c *gin.Context) {
 	files := QueryFiles(path)
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"path":  path,
-		"back":  base_url + "?path=" + path + "..",
+		"back":  base_url + "?path=" + encodeUrl(url.QueryEscape(path+"..")),
 		"files": files,
 	})
 }
@@ -87,11 +87,11 @@ func QueryFiles(path string) []File {
 		if file.IsDir() {
 			nFile.Name = file.Name() + "/"
 			nFile.Type = 0
-			nFile.Address = base_url + "?path=" + url.QueryEscape(path+file.Name()+"/")
+			nFile.Address = base_url + "?path=" + encodeUrl(url.QueryEscape(path+file.Name())+"/")
 		} else {
 			nFile.Name = file.Name()
 			nFile.Type = 1
-			nFile.Address = base_download_url + path + file.Name()
+			nFile.Address = base_download_url + encodeUrl(path+file.Name())
 			info, _ := file.Info()
 			size := info.Size()
 			switch {
@@ -117,6 +117,12 @@ func QueryFiles(path string) []File {
 		}
 	})
 	return res
+}
+
+func encodeUrl(url string) string {
+	url = strings.ReplaceAll(url, "#", "%23")
+	url = strings.ReplaceAll(url, "&", "%26")
+	return url
 }
 
 func sortName(filename string) string {
