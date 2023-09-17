@@ -23,8 +23,6 @@ import (
 
 var base_path string
 var base_port string
-var base_download_port string
-var base_domain string
 var base_url string
 var base_download_url string
 
@@ -152,13 +150,11 @@ func sortName(filename string) string {
 
 func args() {
 	flag.StringVar(&base_port, "P", "", "Port is nil")
-	flag.StringVar(&base_download_port, "DP", "", "Download Port is nil")
 	flag.StringVar(&base_path, "PATH", "", "Base Path is nil")
-	flag.StringVar(&base_domain, "DOMAIN", "", "Base Domain is nil")
+	flag.StringVar(&base_url, "URL", "", "URL is nil")
+	flag.StringVar(&base_download_url, "DOWNLOAD_URL", "", "Download URL is nil")
 	flag.Parse()
-	base_url = base_domain + ":" + base_port
-	base_download_url = base_domain + ":" + base_download_port
-	log.Printf("Params:\n%s\n%s\n%s\n%s\n%s\n%s", base_port, base_download_port, base_path, base_domain, base_url, base_download_url)
+	log.Printf("Params:\n%s\n%s\n%s\n%s", base_port, base_path, base_url, base_download_url)
 }
 
 func main() {
