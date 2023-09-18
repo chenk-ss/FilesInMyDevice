@@ -3,7 +3,7 @@
 run
 ```shell
 ./build_linux.sh
-./filesInMyDevice -P xxx -DP xxx -PATH /root -DOMAIN http://ip
+./filesInMyDevice -P xxx -PATH /root -URL http://ip:port -DOWNLOAD_URL http://ip:port
 ```
 
 nginx:
